@@ -7,12 +7,12 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 final FlutterAppAuth appAuth = FlutterAppAuth();
 final FlutterSecureStorage secureStorage = const FlutterSecureStorage();
 
-const KEYCLOAK_DOMAIN =
+const AAD_DOMAIN =
     'origanum-227.man.poznan.pl:8082/auth/realms/SmartKampus';
-const KEYCLOAK_CLIENT_ID = 'bikestation_login';
-const KEYCLOAK_REDIRECT_URI = 'com.keycloak.keycloakauth://login-callback';
-const KEYCLOAK_LOGOUT_URI = 'https://$KEYCLOAK_DOMAIN';
-const KEYCLOAK_ISSUER = 'https://$KEYCLOAK_DOMAIN';
+const AAD_CLIENT_ID = 'bikestation_login';
+const AAD_REDIRECT_URI = 'com.keycloak.keycloakauth://login-callback';
+const AAD_LOGOUT_URI = 'https://$AAD_DOMAIN';
+const AAD_ISSUER = 'https://$AAD_DOMAIN';
 
 enum AuthenticationStatus { unknown, authenticated, unauthenticated }
 
@@ -42,10 +42,10 @@ class AuthenticationRepository {
     try {
       final result = await appAuth.authorizeAndExchangeCode(
         AuthorizationTokenRequest(
-          KEYCLOAK_CLIENT_ID,
-          KEYCLOAK_REDIRECT_URI,
+          AAD_CLIENT_ID,
+          AAD_REDIRECT_URI,
           clientSecret: 'xXWIsDr27uuZ0qGqhc8AvjOTLeWqmhBS',
-          issuer: 'https://$KEYCLOAK_DOMAIN',
+          issuer: 'https://$AAD_DOMAIN',
           scopes: ['openid', 'profile', 'offline_access'],
           // promptValues: ['login']
         ),
@@ -68,8 +68,8 @@ class AuthenticationRepository {
       await appAuth.endSession(
         EndSessionRequest(
             idTokenHint: storedIDToken,
-            issuer: KEYCLOAK_LOGOUT_URI,
-            postLogoutRedirectUrl: KEYCLOAK_REDIRECT_URI,
+            issuer: AAD_LOGOUT_URI,
+            postLogoutRedirectUrl: AAD_REDIRECT_URI,
             allowInsecureConnections: true),
       );
     } catch (e, s) {
@@ -87,10 +87,10 @@ class AuthenticationRepository {
 
     try {
       final response = await appAuth.token(TokenRequest(
-        KEYCLOAK_CLIENT_ID,
-        KEYCLOAK_REDIRECT_URI,
+        AAD_CLIENT_ID,
+        AAD_REDIRECT_URI,
         clientSecret: 'xXWIsDr27uuZ0qGqhc8AvjOTLeWqmhBS',
-        issuer: 'https://$KEYCLOAK_DOMAIN',
+        issuer: 'https://$AAD_DOMAIN',
         scopes: ['openid', 'profile', 'offline_access'],
       ));
 
