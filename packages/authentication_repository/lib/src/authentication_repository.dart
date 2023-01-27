@@ -10,7 +10,7 @@ final FlutterSecureStorage secureStorage = const FlutterSecureStorage();
 const AAD_DOMAIN =
     'origanum-227.man.poznan.pl:8082/auth/realms/SmartKampus';
 const AAD_CLIENT_ID = 'bikestation_login';
-const AAD_REDIRECT_URI = 'com.keycloak.keycloakauth://login-callback';
+const AAD_REDIRECT_URI = 'com.kghm.wiedza://login-callback';
 const AAD_LOGOUT_URI = 'https://$AAD_DOMAIN';
 const AAD_ISSUER = 'https://$AAD_DOMAIN';
 
