@@ -1,10 +1,20 @@
 part of 'login_bloc.dart';
 
-abstract class LoginState extends Equatable {
-  const LoginState();
-}
+class LoginState extends Equatable {
+  const LoginState({
+    this.status = FormzStatus.pure,
+  });
 
-class LoginInitial extends LoginState {
+  final FormzStatus status;
+
+  LoginState copyWith({
+    FormzStatus? status,
+  }) {
+    return LoginState(
+      status: status ?? this.status,
+    );
+  }
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [status];
 }
