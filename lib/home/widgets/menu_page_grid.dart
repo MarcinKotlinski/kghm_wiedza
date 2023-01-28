@@ -29,9 +29,11 @@ class _MenuPageGridState extends State<MenuPageGrid> {
             childAspectRatio: 3/4,
           ),
           itemBuilder: (BuildContext context, int index) {
+            if (state.menuItems[index].isActive == null) state.menuItems[index].isActive == true;
             return MenuPageGridItem(
               label: state.menuItems[index].name.toString(),
               icon: state.menuItems[index].imageAsset.toString(),
+              webSite: state.menuItems[index].webSite.toString(),
             );
           },
         );

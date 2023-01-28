@@ -7,7 +7,6 @@ import 'package:home_repository/home_repository.dart';
 import 'package:stream_transform/stream_transform.dart';
 import 'package:home_api/home_api.dart';
 
-
 part 'home_event.dart';
 part 'home_state.dart';
 
@@ -26,14 +25,18 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }) : _homeRepository = homeRepository,
         super(const HomeState()) {
     on<MenuItemFetched>(
-      _onInstitutionFetched,
+      _onMenuItemFetched,
+      transformer: throttleDroppable(throttleDuration),
+    );
+    on<MenuItemChanged>(
+      _onMenuItemChanged,
       transformer: throttleDroppable(throttleDuration),
     );
   }
 
   final HomeRepository _homeRepository;
 
-  Future<void> _onInstitutionFetched(
+  Future<void> _onMenuItemFetched(
       MenuItemFetched event,
       Emitter<HomeState> emit,
       ) async {
@@ -54,6 +57,14 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       emit(state.copyWith(status: HomeStatus.failure));
     }
   }
+
+  void _onMenuItemChanged(
+      MenuItemChanged event,
+      Emitter<HomeState> emit,
+      )  {
+     _homeRepository.setNewValue(event.id, event.newValue);
+  }
+
 
   Future<List<MenuItem>> _fetchMenuItems() async {
     final response = await _homeRepository.getMenuItems();

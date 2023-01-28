@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kghm_wiedza/splash/splash.dart';
 
+import '../home/view/choice_page.dart';
 import '../home/view/home_page.dart';
 import '../login/view/login_page.dart';
 
@@ -15,9 +16,9 @@ class AppRouter {
         const LoginPage(),
       ),
       GoRoute(
-        path: '/splash',
+        path: '/choice',
         builder: (BuildContext context, GoRouterState state) =>
-        const SplashPage(),
+        const ChoicePage(),
       ),
       GoRoute(
         path: '/home',

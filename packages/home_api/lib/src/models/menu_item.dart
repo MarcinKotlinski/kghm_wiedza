@@ -4,10 +4,11 @@ import 'package:home_api/src/models/models.dart';
 class MenuItem extends Equatable{
   final int id;
   final String name;
-  final bool isActive;
+  bool isActive;
   final String imageAsset;
+  final String webSite;
 
-  const MenuItem({required this.id, required this.name, this.isActive = true, required this.imageAsset});
+  MenuItem({required this.id, required this.name, required this.isActive, required this.imageAsset, required this.webSite});
 
   @override
   List<Object?> get props => [id];

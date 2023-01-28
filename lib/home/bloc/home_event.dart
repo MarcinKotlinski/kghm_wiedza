@@ -7,3 +7,10 @@ abstract class HomeEvent extends Equatable {
 }
 
 class MenuItemFetched extends HomeEvent {}
+
+class MenuItemChanged extends HomeEvent {
+  MenuItemChanged(this.id, this.newValue);
+
+  final int id;
+  final bool newValue;
+}

@@ -82,10 +82,10 @@ class _AppViewState extends State<AppView> {
           listener: (context, state) {
             switch (state.status) {
               case AuthenticationStatus.authenticated:
-                widget.appRouter.router.go('/home');
+                widget.appRouter.router.go('/choice');
                 break;
               case AuthenticationStatus.unauthenticated:
-                widget.appRouter.router.go('/home');
+                widget.appRouter.router.go('/');
                 break;
               case AuthenticationStatus.unknown:
                 break;

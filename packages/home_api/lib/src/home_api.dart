@@ -3,25 +3,33 @@ import 'package:home_api/src/models/menu_item.dart';
 
 class HomeApi {
   final List<MenuItem> _menuItems = [
-    const MenuItem(
+    MenuItem(
       id: 1,
+      isActive: true,
       name: 'Oferty pracy',
       imageAsset: 'lib/assets/images/job.png',
+      webSite: 'https://rekrutacja.kghm.com/Recruitment'
     ),
-    const MenuItem(
+    MenuItem(
       id: 2,
+      isActive: true,
       name: 'Informacje',
       imageAsset: 'lib/assets/images/info.png',
+      webSite: 'https://media.kghm.com/pl/informacje-prasowe'
     ),
-    const MenuItem(
+    MenuItem(
       id: 3,
+      isActive: true,
       name: 'Surowce',
       imageAsset: 'lib/assets/images/resources.png',
+      webSite: 'https://www.money.pl/gielda/surowce/dane,miedz.html'
     ),
-    const MenuItem(
-      id: 3,
+    MenuItem(
+      id: 4,
+      isActive: true,
       name: 'Akcje',
       imageAsset: 'lib/assets/images/stock.png',
+      webSite: 'https://www.money.pl/gielda/spolki-gpw/plkghm000017.html'
     ),
   ];
 

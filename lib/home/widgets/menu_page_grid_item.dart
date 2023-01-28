@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kghm_wiedza/utils/url_launch.dart';
 
 class MenuPageGridItem extends StatelessWidget {
   const MenuPageGridItem({
     required this.label,
     required this.icon,
+    required this.webSite,
     super.key,
   });
 
   final String label;
   final String icon;
+  final String webSite;
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +65,7 @@ class MenuPageGridItem extends StatelessWidget {
             color: Colors.transparent,
             child: InkWell(
               onTap: () => {
-                context.push('/menu/smart_${label.toLowerCase()}'),
+                UrlLaunch.openWebSite(webSite),
               },
             ),
           ),
