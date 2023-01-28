@@ -7,12 +7,11 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 final FlutterAppAuth appAuth = FlutterAppAuth();
 final FlutterSecureStorage secureStorage = const FlutterSecureStorage();
 
-const AAD_DOMAIN =
-    'origanum-227.man.poznan.pl:8082/auth/realms/SmartKampus';
-const AAD_CLIENT_ID = 'bikestation_login';
-const AAD_REDIRECT_URI = 'com.kghm.wiedza://login-callback';
-const AAD_LOGOUT_URI = 'https://$AAD_DOMAIN';
-const AAD_ISSUER = 'https://$AAD_DOMAIN';
+const AUTH0_DOMAIN = 'dev-0wsp334h4lrgduor.us.auth0.com';
+const AUTH0_CLIENT_ID = 'KnMLmZiJgc5Us54ADC70tOtl07E72IfW';
+const AUTH0_REDIRECT_URI = 'com.kghm.wiedza://login-callback';
+const AUTH0_LOGOUT_URI = 'https://$AUTH0_DOMAIN';
+const AUTH0_ISSUER = 'https://$AUTH0_DOMAIN';
 
 enum AuthenticationStatus { unknown, authenticated, unauthenticated }
 
@@ -42,12 +41,12 @@ class AuthenticationRepository {
     try {
       final result = await appAuth.authorizeAndExchangeCode(
         AuthorizationTokenRequest(
-          AAD_CLIENT_ID,
-          AAD_REDIRECT_URI,
-          clientSecret: 'xXWIsDr27uuZ0qGqhc8AvjOTLeWqmhBS',
-          issuer: 'https://$AAD_DOMAIN',
+          AUTH0_CLIENT_ID,
+          AUTH0_REDIRECT_URI,
+          clientSecret: '9NgZF2E9Co9_FappiNPh0M6Cmxpq4KlIbXUpEWM5pfWwebpq5CJPgzt4fhP0XHEf',
+          issuer: 'https://$AUTH0_DOMAIN',
           scopes: ['openid', 'profile', 'offline_access'],
-          // promptValues: ['login']
+          promptValues: ['login']
         ),
       );
       // print('ID TOKEN: ${result?.idToken}');
@@ -63,46 +62,9 @@ class AuthenticationRepository {
   }
 
   Future<void> logOut() async {
-    final storedIDToken = await secureStorage.read(key: 'id_token');
-    try {
-      await appAuth.endSession(
-        EndSessionRequest(
-            idTokenHint: storedIDToken,
-            issuer: AAD_LOGOUT_URI,
-            postLogoutRedirectUrl: AAD_REDIRECT_URI,
-            allowInsecureConnections: true),
-      );
-    } catch (e, s) {
-      print('login error: $e - stack: $s');
-    }
     await secureStorage.delete(key: 'refresh_token');
 
     _controller.add(AuthenticationStatus.unauthenticated);
-  }
-
-  Future<void> refreshToken() async {
-    final storedRefreshToken = await secureStorage.read(key: 'refresh_token');
-
-    if (storedRefreshToken == null) return;
-
-    try {
-      final response = await appAuth.token(TokenRequest(
-        AAD_CLIENT_ID,
-        AAD_REDIRECT_URI,
-        clientSecret: 'xXWIsDr27uuZ0qGqhc8AvjOTLeWqmhBS',
-        issuer: 'https://$AAD_DOMAIN',
-        scopes: ['openid', 'profile', 'offline_access'],
-      ));
-
-      // print('ID TOKEN: ${result?.idToken}');
-      await secureStorage.write(
-          key: 'refresh_token', value: response?.refreshToken);
-
-      _controller.add(AuthenticationStatus.authenticated);
-    } on Exception catch (e, s) {
-      print('error on refresh token: $e - stack: $s');
-      await logOut();
-    }
   }
 
   void dispose() => _controller.close();

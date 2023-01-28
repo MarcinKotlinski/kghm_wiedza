@@ -4,13 +4,14 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:user_repository/src/models/models.dart';
+import 'package:uuid/uuid.dart';
 
-const AAD_DOMAIN =
-    'origanum-227.man.poznan.pl:8082/auth/realms/SmartKampus';
+const AUTH0_DOMAIN =
+    'dev-0wsp334h4lrgduor.us.auth0.com';
 
 class UserRepository {
   Future<User> getUser(String? accessToken) async {
-    const url = 'https://$AAD_DOMAIN/protocol/openid-connect/userinfo';
+    const url = 'https://$AUTH0_DOMAIN/userinfo';
     final response = await http.get(
       Uri.parse(url),
       headers: {
@@ -22,9 +23,9 @@ class UserRepository {
       var userData = jsonDecode(response.body);
       if (userData != null) {
         return User(
-            userData['sid'].toString(),
-            userData['given_name'].toString(),
-            userData['family_name'].toString(),
+            Uuid().v4(),
+            userData['name'].toString(),
+            userData['picture'].toString()
         );
       }
       return User.empty;

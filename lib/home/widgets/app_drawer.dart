@@ -31,25 +31,25 @@ class _AppDrawerState extends State<AppDrawer> {
               children: [
                 Builder(
                   builder: (context) {
-                    final givenName = context.select(
-                          (AuthenticationBloc bloc) => bloc.state.user.given_name,
+                    final name = context.select(
+                          (AuthenticationBloc bloc) => bloc.state.user.name,
                     );
-                    final userFamilyName = context.select(
-                          (AuthenticationBloc bloc) => bloc.state.user.family_name,
+                    final picture = context.select(
+                          (AuthenticationBloc bloc) => bloc.state.user.picture,
                     );
                     return UserAccountsDrawerHeader(
-                      accountName: Text('$givenName $userFamilyName'),
-                      accountEmail: Text("jan.kowalski@mail.com"),
-                      // currentAccountPicture: CircleAvatar(
-                      //   child: ClipOval(
-                      //     child: Image.network(
-                      //       'https://oflutter.com/wp-content/uploads/2021/02/girl-profile.png',
-                      //       fit: BoxFit.cover,
-                      //       width: 90,
-                      //       height: 90,
-                      //     ),
-                      //   ),
-                      // ),
+                      accountName: Text(''),
+                      accountEmail: Text("$name"),
+                      currentAccountPicture: CircleAvatar(
+                        child: ClipOval(
+                          child: Image.network(
+                            picture,
+                            fit: BoxFit.cover,
+                            width: 90,
+                            height: 90,
+                          ),
+                        ),
+                      ),
                     );
                   },
                 ),

@@ -19,6 +19,18 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        elevation: 0,
+        title: SizedBox(
+          height: 100,
+          width: 100,
+          child: Image.asset(
+            'lib/assets/icons/kghm.png',
+          ),
+        ),
+        centerTitle: true,
+      ),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Center(
         child: Column(
