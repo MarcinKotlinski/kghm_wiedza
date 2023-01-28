@@ -32,6 +32,8 @@ dependencies:
     path: packages/user_repository
   authentication_repository:
     path: packages/authentication_repository
+  home_repository:
+    path: packages/home_repository
 
 dev_dependencies:
   bloc_test: ^9.1.0
@@ -52,3 +54,8 @@ flutter:
         - asset: lib/assets/fonts/Roboto/Roboto-Bold.ttf
   assets:
     - lib/assets/icons/kghm.png
+    - lib/assets/images/info.png
+    - lib/assets/images/job.png
+    - lib/assets/images/resources.png
+    - lib/assets/images/stock.png
+    - lib/assets/images/info.svg

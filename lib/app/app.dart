@@ -85,7 +85,7 @@ class _AppViewState extends State<AppView> {
                 widget.appRouter.router.go('/home');
                 break;
               case AuthenticationStatus.unauthenticated:
-                widget.appRouter.router.go('/');
+                widget.appRouter.router.go('/home');
                 break;
               case AuthenticationStatus.unknown:
                 break;
