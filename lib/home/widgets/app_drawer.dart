@@ -50,16 +50,16 @@ class _AppDrawerState extends State<AppDrawer> {
                     return UserAccountsDrawerHeader(
                       accountName: Text(''),
                       accountEmail: Text("$name"),
-                      // currentAccountPicture: CircleAvatar(
-                      //   child: ClipOval(
-                      //     child: Image.network(
-                      //       picture,
-                      //       fit: BoxFit.cover,
-                      //       width: 90,
-                      //       height: 90,
-                      //     ),
-                      //   ),
-                      // ),
+                      currentAccountPicture: CircleAvatar(
+                        child: ClipOval(
+                          child: Image.network(
+                            picture,
+                            fit: BoxFit.cover,
+                            width: 90,
+                            height: 90,
+                          ),
+                        ),
+                      ),
                     );
                   },
                 ),

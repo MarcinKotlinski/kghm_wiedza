@@ -22,7 +22,6 @@ class _ChoicePageState extends State<ChoicePage> {
       HomeBloc(homeRepository: HomeRepository())
         ..add(MenuItemFetched()),
       child: Scaffold(
-        drawer: const AppDrawer(),
         appBar: AppBar(
           backgroundColor: Theme
               .of(context)

@@ -1,4 +1,4 @@
-# Kghm Wiedza
+# KGHM Wiedza
 
 ![coverage][coverage_badge]
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
@@ -6,6 +6,32 @@
 
 Mobile application made for KGHM during CuValley Hack 2023
 
+## Getting Started 🚀
+
+## Installation 💻
+
+**❗ In order to start using Home Repository you must have the FLUTTER and DART SDK installed on your machine.**
+
+This project contains 3 flavors:
+
+- development
+- staging
+- production
+
+To run the desired flavor either use the launch configuration in VSCode/Android Studio or use the following commands:
+
+```sh
+$ dart pub global activate very_good_cli
+```
+
+```sh
+$ very_good packages get --recursive
+```
+
+```sh
+# Production
+$ flutter run --flavor production --target lib/main_production.dart
+```
 
 [coverage_badge]: coverage_badge.svg
 [flutter_localizations_link]: https://api.flutter.dev/flutter/flutter_localizations/flutter_localizations-library.html
