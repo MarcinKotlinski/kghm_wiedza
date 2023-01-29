@@ -36,6 +36,7 @@ $ flutter run --flavor production --target lib/main_production.dart
 Dane do logowania w aplikacji:
 
 Login: jury@kghm.com
+
 Haslo: Kghm2023
 
 [coverage_badge]: coverage_badge.svg
