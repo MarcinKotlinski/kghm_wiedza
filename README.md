@@ -33,6 +33,11 @@ $ very_good packages get --recursive
 $ flutter run --flavor production --target lib/main_production.dart
 ```
 
+Dane do logowania w aplikacji:
+
+Login: jury@kghm.com
+Haslo: Kghm2023
+
 [coverage_badge]: coverage_badge.svg
 [flutter_localizations_link]: https://api.flutter.dev/flutter/flutter_localizations/flutter_localizations-library.html
 [internationalization_link]: https://flutter.dev/docs/development/accessibility-and-localization/internationalization
